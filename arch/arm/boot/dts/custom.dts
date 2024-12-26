@@ -20,6 +20,7 @@
 	aliases {
 		serial0 = &uart0;
 		serial1 = &uart1;
+		ethernet0 = &emac;
 	};
 
 	chosen {
@@ -269,5 +270,12 @@
 	 * the external USB device will be powered just by the power input
 	 * from the power-only USB port.
 	 */
+	status = "okay";
+};
+
+&emac {
+	phy-handle = <&int_mii_phy>;
+	phy-mode = "mii";
+	allwinner,leds-active-low;
 	status = "okay";
 };
