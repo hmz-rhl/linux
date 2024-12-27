@@ -279,3 +279,18 @@
 	allwinner,leds-active-low;
 	status = "okay";
 };
+
+&spi0 {
+	status="okay";
+
+	spidev@0{
+		compatible = "rohm,dh2228fv";
+		reg = <0>; /* chip select of controller : PC3 to check or remove*/
+		spi-max-frequency = <4000000>;
+	};
+};
+
+/* PA11 PA12 */
+&i2c0 {
+	status="okay";
+};
