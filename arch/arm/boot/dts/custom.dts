@@ -196,12 +196,12 @@
 &pio {
 	gpio-line-names =
 		/* PA */
-		"CON2-P13", "CON2-P11", "CON2-P22", "CON2-P15",
-			"CON3-P03", "CON3-P02", "CON2-P07", "CON2-P29",
-		"CON2-P31", "CON2-P33", "CON2-P35", "CON2-P05",
-			"CON2-P03", "CON2-P08", "CON2-P10", "CON2-P16",
-		"CON2-P12", "CON2-P37", "CON2-P28", "CON2-P27",
-			"CON2-P40", "CON2-P38", "", "",
+		"CON2-P13", "CON2-P11", "IRQ0", "USER_KEY",
+			"CON3-P03", "CON3-P02", "CON2-P07", "LOCK_P",
+		"PP_IN", "CON2-P33", "WD_TRIP", "I2C0_CLK",
+			"I2C0_SDA", "CON2-P08", "CON2-P10", "RCD_TRIP_AC",
+		"RCD_TRIP_DC", "CF4", "CON2-P28", "CON2-P27",
+			"LED_STRIP", "CON2-P38", "", "",
 		"", "", "", "", "", "", "", "",
 
 		/* PB */
@@ -211,8 +211,8 @@
 		"", "", "", "", "", "", "", "",
 
 		/* PC */
-		"CON2-P19", "CON2-P21", "CON2-P23", "CON2-P24",
-			"CON2-P18", "", "", "CON2-P26",
+		"SPI0_MOSI", "SPI0_MISO", "SPI0_CLK", "CON2-P24",
+			"IRQ1", "", "", "CON2-P26",
 		"", "", "", "", "", "", "", "",
 		"", "", "", "", "", "", "", "",
 		"", "", "", "", "", "", "", "",
