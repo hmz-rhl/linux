@@ -21,6 +21,7 @@
 		serial0 = &uart0;
 		serial1 = &uart1;
 		ethernet0 = &emac;
+		i2c3 = &r_i2c;
 	};
 
 	chosen {
@@ -280,17 +281,137 @@
 	status = "okay";
 };
 
-&spi0 {
-	status="okay";
+/* PA11 PA12 */
+&i2c0 {
 
-	spidev@0{
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	status = "okay";
+
+	exp_gpio0: mcp23008@26 {
+
+		status = "okay";
+
+		compatible = "microchip,mcp23008";
+		label="expander-A";
+		reg = <0x26>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		gpio-line-names =	"TYPE-2_NL1_ON",
+							"TYPE-2_L2L3_ON",
+							"TYPE-E/F_ON",
+							"LOCK_D",
+							"RCD_DIS",
+							"RCD_TST",
+							"RCD_RESET",
+							"UNUSED";
+
+		unused_gpio {
+			gpio-hog;
+			gpios = <7 0>;
+			input;
+		};
+
+	};
+
+	exp_gpio1: expander-B@27 {
+
+		status="okay";
+
+		compatible = "microchip,mcp23008";
+		label = "expander-B";
+		reg = <0x27>;
+		gpio-controller;
+		#gpio-cells = <2>;
+
+		gpio-line-names =	"LED_DIS",
+							"CP_DIS",
+							"PP_CS",
+							"CP_CS",
+							"T_CS",
+							"PM_CS",
+							"PM1",
+							"PM0";
+
+	};
+
+	rtc_ext: rtc_eeprom@6f {
+
+		satus = "okay";
+		compatible = "microchip,mcp7941x";
+
+		reg = <0x6F>;
+
+	};
+
+};
+
+/* PA18 PA19 */
+&i2c1 {
+	status = "okay";
+};
+
+&spi0 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	status = "okay";
+	cs-gpios = <&exp_gpio1 3 GPIO_ACTIVE_LOW>, <0>, <&exp_gpio1 2 GPIO_ACTIVE_LOW>, <&exp_gpio1 4 GPIO_ACTIVE_LOW>;
+
+	adc_CP@0 {
+		status = "okay";
+		compatible = "microchip,mcp3202";
+		reg = <0>;
+		spi-max-frequency = <1000000>;
+	};
+
+	spidev@1{
+		status = "okay";
 		compatible = "rohm,dh2228fv";
-		reg = <0>; /* chip select of controller : PC3 to check or remove*/
+		reg = <1>; /* choosed chip select 1 bc : PC3 = CS0 (reg 0)*/
+		spi-max-frequency = <100000000>;
+	};
+
+	adc_PP@2 {
+		status = "okay";
+		compatible = "microchip,mcp3202";
+		reg = <2>;
+		spi-max-frequency = <1000000>;
+	};
+
+	adc_temp@3 {
+		status = "okay";
+		compatible = "microchip,mcp3202";
+		reg = <3>;
+		spi-max-frequency = <1000000>;
+	};
+};
+
+&spi1 {
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	status = "disabled";
+
+	spidev@1{
+		status = "disabled";
+		compatible = "rohm,dh2228fv";
+		reg = <1>; /* choosed chip select 1 bc : PA13 =CS0 (reg 0)*/
 		spi-max-frequency = <4000000>;
 	};
 };
 
-/* PA11 PA12 */
-&i2c0 {
-	status="okay";
+/* PE12 PE13 */
+&i2c2 {
+	status = "disabled";
 };
+
+/* PL0 PL1 */
+&r_i2c { /* r_i2c */
+	status = "disabled";
+};
+
+
+// PA5=PWM0/UART0_RX PA6=PWM1 PL10=S_PWM=LED_PWR
