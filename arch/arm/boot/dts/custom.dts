@@ -14,7 +14,7 @@
 #include <dt-bindings/input/input.h>
 
 / {
-	model = "Banana Pi BPI-M2-Zero";
+	model = "Banana Pi BPI-P2-Zero (HubLoad)";
 	compatible = "sinovoip,bpi-m2-zero", "allwinner,sun8i-h2-plus";
 
 	aliases {
@@ -43,7 +43,7 @@
 		compatible = "gpio-leds";
 
 		pwr_led {
-			label = "bananapi-m2-zero:red:pwr";
+			label = "bananapi-p2-zero:red:pwr";
 			gpios = <&r_pio 0 10 GPIO_ACTIVE_LOW>; /* PL10 */
 			default-state = "on";
 		};
