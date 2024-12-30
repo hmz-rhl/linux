@@ -349,7 +349,7 @@
 
 /* PA18 PA19 */
 &i2c1 {
-	status = "okay";
+	status = "disabled";
 };
 
 &spi0 {
