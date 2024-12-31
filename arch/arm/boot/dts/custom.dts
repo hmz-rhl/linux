@@ -20,12 +20,13 @@
 	aliases {
 		serial0 = &uart0;
 		serial1 = &uart1;
+		serial3 = &uart3;
 		ethernet0 = &emac;
 		i2c3 = &r_i2c;
 	};
 
 	chosen {
-		stdout-path = "serial0:115200n8";
+		stdout-path = "serial3:115200n8";
 	};
 
 	connector {
@@ -246,6 +247,17 @@
 			"BT-RST-N", "AP-WAKE-BT", "", "",
 		"", "", "", "", "", "", "", "",
 		"", "", "", "", "", "", "", "";
+/* pour activer le pwm il faut couper l'uart0 */
+	uart0 {
+		status = "disabled";
+		//pins = "PA5";
+		//function = "uart0";
+	};
+
+	pwm0_pin: pwm0-pin {
+        pins = "PA5";
+		function = "pwm0";
+	};
 };
 
 &r_pio {
@@ -413,5 +425,15 @@
 	status = "disabled";
 };
 
+&pwm { //0xC21400
+	pinctrl-names = "default";
+	pinctrl-0 = <&pwm0_pin>;
+	status = "okay";
+};
 
 // PA5=PWM0/UART0_RX PA6=PWM1 PL10=S_PWM=LED_PWR
+&uart3{
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart3_pins>;
+	status = "okay";
+};
