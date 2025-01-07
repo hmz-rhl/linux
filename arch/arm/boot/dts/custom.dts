@@ -374,6 +374,7 @@
 
 	adc_CP@0 {
 		status = "okay";
+		label = "CP";
 		compatible = "microchip,mcp3202";
 		reg = <0>;
 		spi-max-frequency = <1000000>;
@@ -388,6 +389,7 @@
 
 	adc_PP@2 {
 		status = "okay";
+		label = "PP";
 		compatible = "microchip,mcp3202";
 		reg = <2>;
 		spi-max-frequency = <1000000>;
@@ -395,6 +397,7 @@
 
 	adc_temp@3 {
 		status = "okay";
+		label = "temperature_power_pcb";
 		compatible = "microchip,mcp3202";
 		reg = <3>;
 		spi-max-frequency = <1000000>;
