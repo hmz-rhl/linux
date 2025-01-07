@@ -20,13 +20,14 @@
 	aliases {
 		serial0 = &uart0;
 		serial1 = &uart1;
-		serial3 = &uart3;
+		serial2 = &uart2;
 		ethernet0 = &emac;
 		i2c3 = &r_i2c;
 	};
 
 	chosen {
-		stdout-path = "serial3:115200n8";
+		stdout-path = "serial2:115200n8";
+		bootargs = "rootwait root=PARTUUID=0f515b90-01 rw early-printk";
 	};
 
 	connector {
@@ -400,18 +401,19 @@
 	};
 };
 
-&spi1 {
-
+&spi1 { // a utiliser pour les leds ?
+	//pinctrl-names = "default";
+	//pinctrl-0 = <&spi1_pins>; // a changer seluement si on veut utiliser les autres pins
 	#address-cells = <1>;
 	#size-cells = <0>;
 
-	status = "disabled";
+	status = "okay";
 
-	spidev@1{
-		status = "disabled";
+	spidev@1{ // leds
+		status = "okay";
 		compatible = "rohm,dh2228fv";
 		reg = <1>; /* choosed chip select 1 bc : PA13 =CS0 (reg 0)*/
-		spi-max-frequency = <4000000>;
+		spi-max-frequency = <10000000>;
 	};
 };
 
@@ -434,6 +436,6 @@
 // PA5=PWM0/UART0_RX PA6=PWM1 PL10=S_PWM=LED_PWR
 &uart3{
 	pinctrl-names = "default";
-	pinctrl-0 = <&uart3_pins>;
+	pinctrl-0 = <&uart2_pins>;
 	status = "okay";
 };
