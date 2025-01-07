@@ -27,7 +27,7 @@
 
 	chosen {
 		stdout-path = "serial2:115200n8";
-		bootargs = "rootwait root=PARTUUID=0f515b90-01 rw early-printk";
+		bootargs = "rootwait root=PARTUUID=efda68e0-02 rw early-printk";
 	};
 
 	connector {
@@ -173,7 +173,7 @@
 &uart0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&uart0_pa_pins>;
-	status = "okay";
+	status = "disabled";
 };
 
 &uart1 {
@@ -434,7 +434,7 @@
 };
 
 // PA5=PWM0/UART0_RX PA6=PWM1 PL10=S_PWM=LED_PWR
-&uart3{
+&uart2{
 	pinctrl-names = "default";
 	pinctrl-0 = <&uart2_pins>;
 	status = "okay";
