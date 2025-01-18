@@ -27,7 +27,7 @@
 
 	chosen {
 		stdout-path = "serial2:115200n8";
-		bootargs = "rootwait root=PARTUUID=efda68e0-02 rw early-printk";
+		bootargs = "rootwait root=PARTUUID=efda68e0-02 rw early-printk spidev.bufsize=65534 rootfstype=ext4 splash=verbose console=ttyS2,115200 console=tty1 hdmi.audio=EDID:0 disp.screen0_output_mode=1920x1080p60 consoleblank=0 loglevel=1 ubootpart=0f515b90-01 ubootsource=mmc usb-storage.quirks=0x2537:0x1066:u,0x2537:0x1068:u   sunxi_ve_mem_reserve=0 sunxi_g2d_mem_reserve=0 sunxi_fb_mem_reserve=16 cgroup_enable=memory swapaccount=1";
 	};
 
 	connector {
