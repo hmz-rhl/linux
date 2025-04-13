@@ -199,12 +199,12 @@
 &pio {
 	gpio-line-names =
 		/* PA */
-		"CON2-P13", "CON2-P11", "IRQ0", "USER_KEY",
-			"CON3-P03", "CON3-P02", "CON2-P07", "LOCK_P",
+		"CON2-P13", "CON2-P11", "CON2-P22", "USER_KEY",
+			"CON3-P03", "PWM", "SM_TIC_D", "LOCK_P",
 		"PP_IN", "CON2-P33", "WD_TRIP", "I2C0_CLK",
-			"I2C0_SDA", "CON2-P08", "CON2-P10", "RCD_TRIP_AC",
-		"RCD_TRIP_DC", "CF4", "CON2-P28", "CON2-P27",
-			"LED_STRIP", "CON2-P38", "", "",
+			"I2C0_SDA", "CON2-P08", "CON2-P10", "LED_STRIP",
+		"CON2-P12", "CF4", "IRQ1", "IRQ0",
+			"CON2-P37", "RCD_TRIP_DC", "", "",
 		"", "", "", "", "", "", "", "",
 
 		/* PB */
@@ -215,7 +215,7 @@
 
 		/* PC */
 		"SPI0_MOSI", "SPI0_MISO", "SPI0_CLK", "CON2-P24",
-			"IRQ1", "", "", "CON2-P26",
+			"CON2-P18", "", "", "CON2-P26",
 		"", "", "", "", "", "", "", "",
 		"", "", "", "", "", "", "", "",
 		"", "", "", "", "", "", "", "",
@@ -264,7 +264,7 @@
 &r_pio {
 	gpio-line-names =
 		/* PL */
-		"", "CPUX-SET", "CON2-P32", "POWER-KEY", "CON2-P36",
+		"", "CPUX-SET", "LOCK_FB", "POWER-KEY", "RCD_TRIP_AC",
 			"VCC-IO-EN", "USB0-ID", "WL-PWR-EN",
 		"PWR-STB", "PWR-DRAM", "PWR-LED", "IR-RX", "", "", "", "",
 		"", "", "", "", "", "", "", "",
@@ -317,14 +317,15 @@
 							"LOCK_D",
 							"RCD_DIS",
 							"RCD_TST",
-							"RCD_RESET",
-							"UNUSED";
+							"RCD_TRIP_DC_RESET",
+							"RCD_TRIP_AC_DIS";
 
-		unused_gpio {
+
+		/*unused_gpio {
 			gpio-hog;
 			gpios = <7 0>;
 			input;
-		};
+		};*/
 
 	};
 
@@ -338,7 +339,7 @@
 		gpio-controller;
 		#gpio-cells = <2>;
 
-		gpio-line-names =	"LED_DIS",
+		gpio-line-names =	"EXP_B_0_UNUSED",
 							"CP_DIS",
 							"PP_CS",
 							"CP_CS",
@@ -346,9 +347,15 @@
 							"PM_CS",
 							"PM1",
 							"PM0";
+		unused_gpio {
+			gpio-hog;
+			gpios = <0 0>;
+			input;
+		};
 
 	};
 
+	/* HRA temporaire
 	rtc_ext: rtc_eeprom@6f {
 
 		satus = "okay";
@@ -357,6 +364,7 @@
 		reg = <0x6F>;
 
 	};
+	*/
 
 };
 
