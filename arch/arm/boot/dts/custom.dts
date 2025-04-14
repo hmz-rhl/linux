@@ -204,7 +204,7 @@
 		"PP_IN", "CON2-P33", "WD_TRIP", "I2C0_CLK",
 			"I2C0_SDA", "CON2-P08", "CON2-P10", "LED_STRIP",
 		"CON2-P12", "CF4", "IRQ1", "IRQ0",
-			"CON2-P37", "RCD_TRIP_DC", "", "",
+			"RCD_TRIP_AC", "RCD_TRIP_DC", "", "",
 		"", "", "", "", "", "", "", "",
 
 		/* PB */
@@ -264,7 +264,7 @@
 &r_pio {
 	gpio-line-names =
 		/* PL */
-		"", "CPUX-SET", "LOCK_FB", "POWER-KEY", "RCD_TRIP_AC",
+		"", "CPUX-SET", "LOCK_FB", "POWER-KEY", "CON2-P36",
 			"VCC-IO-EN", "USB0-ID", "WL-PWR-EN",
 		"PWR-STB", "PWR-DRAM", "PWR-LED", "IR-RX", "", "", "", "",
 		"", "", "", "", "", "", "", "",
@@ -450,3 +450,9 @@
 	pinctrl-0 = <&uart2_pins>;
 	status = "okay";
 };
+
+//&uart3 { // desactivation  pour attribuer aux leds
+//	pinctrl-names = "default";
+//	pinctrl-0 = <&uart3_pins>, <&uart3_rts_cts_pins>;
+//	status = "disabled";
+//};
